@@ -88,6 +88,15 @@ public class ApkMetaTranslator implements XmlStreamer {
                     versionCode = (majorVersionCode << 32) | (versionCode & 0xFFFFFFFFL);
                 }
                 apkMetaBuilder.setVersionCode(versionCode);
+                apkMetaBuilder.setRevisionCode(attributes.getLong("revisionCode"));
+                apkMetaBuilder.setSharedUserId(attributes.getString("sharedUserId"));
+                apkMetaBuilder.setSharedUserLabel(attributes.getString("sharedUserLabel"));
+                apkMetaBuilder.setSplit(attributes.getString("split"));
+                apkMetaBuilder.setConfigForSplit(attributes.getString("configForSplit"));
+                apkMetaBuilder.setIsFeatureSplit(attributes.getBoolean("isFeatureSplit", false));
+                apkMetaBuilder.setIsSplitRequired(attributes.getBoolean("isSplitRequired", false));
+                apkMetaBuilder.setIsolatedSplits(attributes.getBoolean("isolatedSplits", false));
+
                 String installLocation = attributes.getString("installLocation");
                 if (installLocation != null) {
                     apkMetaBuilder.setInstallLocation(installLocation);
